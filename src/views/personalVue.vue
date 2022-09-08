@@ -79,7 +79,7 @@ export default {
         sortedLinks(sort){
             axios({
                 method: "get",
-                url: `http://79.143.31.216/statistics?order=${sort.active ? 'asc' : 'desc'}_${sort.type}&offset=${this.curPage}&limit=${this.links.length}`,
+                url: `http://79.143.31.216/statistics?order=${sort.active ? 'asc' : 'desc'}_${sort.type}&offset=0&limit=${this.links.length}`,
                 headers: {
                     "accept": "application/json",
                     "Authorization": `Bearer ${localStorage.token}`

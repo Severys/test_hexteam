@@ -15,6 +15,11 @@
 		>
 			{{$route.name === 'regVue' ? 'Зарегистрироваться' : 'Войти'}}
 		</button>
+		<div class="registration_error"
+			v-if="Error"
+		>
+			Пользователь с такими данными уже существует
+		</div>
 	</div>
 </template>
 
@@ -34,6 +39,8 @@ export default {
 				}
 		}
 	},
+	props:['Error'],
+	
 }
 </script>
 

@@ -4,6 +4,7 @@
 		<welcomeBlock/>
 		<router-view 
 			@goTo="(value) => regOrAuth(value)"
+			:Error="regError"
 		/>
 	</div>
 </template>
@@ -19,7 +20,8 @@
 				userInfo: {
 					login: '',
 					password: ''
-				}
+				},
+				regError: false
 			}
 		},
 		methods:{
@@ -34,10 +36,10 @@
 						data: ''
 					})
 					.then(response=>{
-						if(response.status === 200){
+						if(response.status === 200) {
 							this.$router.push({ path: '/authentication'})
 						}
-					})
+					}).catch(this.regError = !this.regError)
 				}else {
 					axios({
 						method: 'post',
@@ -56,7 +58,14 @@
 					})
 				}
 			}
+		},
+		watch:{
+		'$route.name'(val){
+			if (val) {
+				this.regError = false
+			}
 		}
+	}
 	}
 </script>
 
