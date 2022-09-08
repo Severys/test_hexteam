@@ -1,24 +1,16 @@
-# test_hexteam
+# Тестовое задание для компании Гексагон
 
-## Project setup
+## После клонирования репозитория для установки введите
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Далее указана команда для запуска dev сервера
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### И указана команда для запуска build сервера
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
