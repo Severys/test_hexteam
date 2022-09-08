@@ -1,51 +1,51 @@
 <template>
-  <div class="registration">
-    <div class="reg_login">
-      <input 
-        type="text"
-        ref="login" 
-        placeholder="Ваш логин"
-        @input="value=>$emit('takeUser',value.target.value)"
-      >
-      <label 
-        for="login"
-      >
-        Введите ваш Логин
-      </label>
-    </div>
-    <div class="reg_password">
-      <input 
-        type="text" 
-        ref="password"
-        placeholder="Ваш пароль"
-        @input="value=>$emit('takePass',value.target.value)"
-      >
-      <label 
-        for="email"
-      >
-        Введине ваш пароль
-      </label>
-    </div>
-    <button 
-      class="reg_btn btn"
-      @click="$emit('goTo',$route.name)"
-    >
-      Зарегистрироваться
-    </button>
-  </div>
+	<div class="registration">
+		<authInput
+			:takeUser="true"
+			@takeInfo="(value) => userInfo.login = value"
+
+		/>
+		<authInput
+			:takePass="true"
+			@takeInfo="(value) => userInfo.password = value"
+		/>
+		<button 
+			class="registration_btn btn"
+			@click="$emit('goTo',userInfo)"
+		>
+			{{$route.name === 'regVue' ? 'Зарегистрироваться' : 'Войти'}}
+		</button>
+	</div>
 </template>
 
 <script>
+import authInput from '@/components/form-input.vue'
 
 export default {
-  name: 'VForm',
-  watch:{
-    '$route.name'(val){
-      if (val) {
-        this.$refs.password.value = ''
-        this.$refs.login.value = ''
-      }
-    } 
-  }
+	name: 'VForm',
+	components:{
+		authInput
+	},
+	data(){
+		return{
+			userInfo: {
+					login: '',
+					password: ''
+				}
+		}
+	},
 }
 </script>
+
+<style lang="scss">
+	.registration {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 15px;
+		margin-top: 20px;
+		&_btn{
+			margin-top: 20px;
+		}
+	}
+</style>
